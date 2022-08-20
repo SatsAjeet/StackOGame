@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Score</title>
+    <style>
+      body {
+        background: linear-gradient(-45deg, #ea7c5a, #e44783, #44b8e2, #47d4b3);
+        animation: gradient 10s ease infinite;
+        background-size: 500% 500%;
+        height: 100%;
+        padding: 50px 0px 100px 0px;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      #container {
+        width: 70%;
+        height: 580px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin: auto;
+        text-align: center;
+        background-image: linear-gradient(
+          to right,
+          rgb(132, 163, 211),
+          rgb(148, 224, 157)
+        );
+        border-radius: 15px;
+      }
+      h1 {
+        color: rgb(230, 82, 37);
+        padding: 20px;
+      }
+      #scoreDiv{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 30%;
+        margin: 0 auto;
+        color: white
+      }
+      #score,#Hscore{
+        color: rgb(98, 87, 223);
+      }
+      #words{
+        overflow: scroll;
+        height: 200px;
+        text-align:left;
+        color: rgb(100, 32, 189);
+        margin: auto;
+        width: 20%;
+        padding:10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        border-radius: 5px;
+      }
+      #wordsDiv>h2{
+        color: royalblue;
+      }
+      #redirect{
+        background-image: linear-gradient(
+          to right,
+          rgb(212, 119, 219),
+          rgb(126, 84, 210)
+        );
+        padding: 5px 80px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        color: white;
+      }
+      #redirect:hover{
+        background-image: linear-gradient(
+          to right,
+          rgb(126, 84, 210),
+          rgb(212, 119, 219)
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div id="body">
+      <div id="container">
+        <h1>Game Over</h1>
+        <div id="scoreDiv"><h2>Total Score: </h2><h2 id="score"></h2></div>
+        <div id="scoreDiv"><h2>Highest Score: </h2><h2 id="Hscore"></h2></div>
+        <div id="wordsDiv">
+            <h2>Your Words</h2>
+            <div id="words"></div>
+        </div>
+        <button id="redirect">Play Again</button>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+    const data = JSON.parse(localStorage.getItem('SatyajeetGameScore'));
+    document.getElementById("score").innerText= data.totalScore
+    const wordsDiv= document.getElementById('words')
+    data.yourWords.map(item=>{
+        const p= document.createElement("p")
+        p.innerText= `-> ${item}`
+        const hr= document.createElement("hr")
+        wordsDiv.append(p,hr)
+    })
+
+    var highestScore= JSON.parse(localStorage.getItem("highestScoreOfGame")) || -1
+    if(highestScore<data.totalScore){
+        highestScore= data.totalScore
+        localStorage.setItem("highestScoreOfGame",highestScore)
+        document.getElementById("Hscore").innerText= highestScore
+    }else{
+        document.getElementById("Hscore").innerText= highestScore
+    }
+
+    document.getElementById('redirect').addEventListener("click",()=>{
+      window.location.href="/index.html"
+    })
+</script>

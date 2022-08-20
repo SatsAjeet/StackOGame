@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackO Game</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="body">
+        <div style="text-align: center"><button id="redirect">Quit Game</button></div>
+    <div id="container">
+        <div id="header">
+            <h2 id="score">0</h2>
+            <h1 id="timer">99</h1>
+            <div id="tilesLeft">
+                <p id="tilesCount">All</p>
+            <p>Tiles Left</p>
+        </div>
+        </div>
+        <div id="letters"></div>
+        <div id="wordspace">
+            <div id="wordDiv">
+                <div id="delete"><img src="./delete.png" alt="delete" /></div>
+                <div id="word"></div>
+                <div id="submit"><img src="./tick.png" alt="submit"></div>
+                </div>
+        </div>
+        <div id="footer"><p>Tap on the word to remove the last letter</p></div>
+    </div>
+    </div>
+</body>
+</html>
+<script src="./index.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
